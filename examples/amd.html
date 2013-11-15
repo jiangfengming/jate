@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>amd</title>
+<script src="require.js"></script>
+</head>
+<body>
+
+<script type="text/template" id="tmp">
+<h1><:=data.title:></h1>
+<h2>
+	<:
+	if (data.url) {
+		:><a href="<:=data.url:>"><:=data.url:></a><:
+	}
+	:>
+</h2>
+<div><: print('print ', 'something') :></div>
+
+<:
+/*
+block comments
+block comments
+*/
+console.log(1); // line comments
+console.log(2);
+:>
+<pre>
+line1
+line2
+</pre>
+</script>
+
+<div id="container"></div>
+
+<script>
+var DEBUG = true;
+
+require.config({
+	paths: {
+		'jate': DEBUG ? '../jate.esprima' : '../jate', // jate.esprima, jate.jshint, jate.jslint
+		'jate.core': '../jate'
+	},
+});
+
+
+require(['jate'], function (jate) {
+	var tmpfn = jate(document.getElementById('tmp').innerHTML);
+	document.getElementById('container').innerHTML = tmpfn({
+		title: "JATE Ain't a Template Engine",
+		url: 'https://github.com/fenivana/jate'
+	});
+});
+</script>
+</body>
+</html>

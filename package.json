@@ -1,0 +1,23 @@
+{
+  "name": "jate",
+  "version": "0.0.2",
+  "description": "JATE Ain't a Template Engine",
+  "main": "jate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jate",
+    "template",
+    "engine"
+  ],
+  "author": "Allen John",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fenivana/jate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fenivana/jate/issues"
+  }
+}

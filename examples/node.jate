@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>node</title>
+</head>
+<body>
+
+<h1><%=data.title%></h1>
+<h2>
+	<%
+	if (data.url) {
+		%><a href="<%=data.url%>"><%=data.url%></a><%
+	}
+	%>
+</h2>
+<div><% print('print ', 'something') %></div>
+
+<%
+/*
+block comments
+block comments
+*/
+console.log(1); // line comments
+console.log(2);
+%>
+<pre>
+line1
+line2
+</pre>
+
+</body>
+</html>
