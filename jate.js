@@ -13,12 +13,16 @@ function jate(tpl, opts) {
 
 jate.inherit = function(tplfn, data) {
 	return function(d) {
-		var _data = {};
-		for (var p in data)
-			_data[p] = data[p];
-		for (var p in d)
-			_data[p] = d[p];
-		return tplfn(_data);
+		if (d == undefined || d.constructor == Object) {
+			var _data = {};
+			for (var p in data)
+				_data[p] = data[p];
+			for (var p in d)
+				_data[p] = d[p];
+			return tplfn(_data);			
+		} else {
+			return tplfn(d);
+		}
 	}
 };
 

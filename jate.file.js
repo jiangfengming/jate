@@ -33,6 +33,7 @@ jate.file.default = {
 		delete errors.template;
 		delete errors.translation;
 		errors.file = opts.file;
+		console.error(errors);
 		throw errors;
 	},
 
