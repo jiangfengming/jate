@@ -7,9 +7,20 @@
 
 'use strict';
 
-function jate(tpl) {
-	return jate.compile(tpl);
+function jate(tpl, opts) {
+	return jate.compile(tpl, opts);
 }
+
+jate.inherit = function(tplfn, data) {
+	return function(d) {
+		var _data = {};
+		for (var p in data)
+			_data[p] = data[p];
+		for (var p in d)
+			_data[p] = d[p];
+		return tplfn(_data);
+	}
+};
 
 jate.compile = jate.comp = function (tpl) {
 	return new Function('data', jate.translate(tpl));
@@ -37,7 +48,5 @@ jate.close = typeof window == 'undefined' ? '%>' : ':>'; // %> in Node, :> in br
 
 if (typeof module != 'undefined' && module.exports) { // node
 	module.exports = jate;
-} else if (typeof define == 'function' && define.amd) { // amd
-	define('jate', [], function () {return jate;});
-	define('jate.core', [], function () {return jate;});
+	require('./jate.file');
 }

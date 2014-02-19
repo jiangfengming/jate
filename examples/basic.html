@@ -8,7 +8,7 @@
 <script>
 var DEBUG = true;
 
-if(DEBUG){
+if (DEBUG) {
 	document.write('<script src="esprima.js"><\/script>');
 	document.write('<script src="../jate.esprima.js"><\/script>');
 }
@@ -44,10 +44,20 @@ line2
 
 <div id="container"></div>
 
+<div id="container2"></div>
+
 <script>
 var tmpfn = jate(document.getElementById('tmp').innerHTML);
 document.getElementById('container').innerHTML = tmpfn({
 	title: "JATE Ain't a Template Engine",
+	url: 'https://github.com/fenivana/jate'
+});
+
+// create a template with inherit data
+var tmpfn2 = jate.inherit(tmpfn, {
+	title: "JATE Ain't a Template Engine"
+});
+document.getElementById('container2').innerHTML = tmpfn2({
 	url: 'https://github.com/fenivana/jate'
 });
 </script>
