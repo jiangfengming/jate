@@ -1,18 +1,18 @@
-(function () {
-	'use strict';
+'use strict';
 
+(function () {
 	function jate_jshint(jate, JSHINT) {
 		jate.compile = jate.jshint = function(tpl, _opts) {
 			var opts = {};
-			for (var p in jate.jshint.default)
-				opts[p] = jate.jshint.default[p];
-			for (p in _opts)
-				opts[p] = _opts[p];
+			for (var i in jate.jshint.default)
+				opts[i] = jate.jshint.default[i];
+			for (i in _opts)
+				opts[i] = _opts[i];
 
 			var trans = jate.translate(tpl);
 			JSHINT(trans);
 			try {
-				var fn = new Function('data', trans);
+				var fn = jate._compile(trans, opts);
 			} catch (e) {
 				var errors = geterrors();
 				opts.error(errors, opts);

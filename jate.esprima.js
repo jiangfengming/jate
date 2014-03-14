@@ -1,17 +1,17 @@
-(function () {
-	'use strict';
+'use strict';
 
+(function () {
 	function jate_esprima(jate, esprima) {
 		jate.compile = jate.esprima = function(tpl, _opts) {
 			var opts = {};
-			for (var p in jate.esprima.default)
-				opts[p] = jate.esprima.default[p];
-			for (p in _opts)
-				opts[p] = _opts[p];
+			for (var i in jate.esprima.default)
+				opts[i] = jate.esprima.default[i];
+			for (i in _opts)
+				opts[i] = _opts[i];
 
 			var trans = jate.translate(tpl);
 			try {
-				return new Function('data', trans);
+				return jate._compile(trans, opts);
 			} catch (e) {
 				try {
 					esprima.parse(trans);

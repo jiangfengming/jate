@@ -1,18 +1,18 @@
-(function () {
-	'use strict';
+'use strict';
 
+(function () {
 	function jate_jslint(jate, JSLINT) {
 		jate.compile = jate.jslint = function(tpl, _opts) {
 			var opts = {};
-			for (var p in jate.jslint.default)
-				opts[p] = jate.jslint.default[p];
-			for (p in _opts)
-				opts[p] = _opts[p];
+			for (var i in jate.jslint.default)
+				opts[i] = jate.jslint.default[i];
+			for (i in _opts)
+				opts[i] = _opts[i];
 
 			var trans = jate.translate(tpl);
 			JSLINT(trans);
 			try {
-				var fn = new Function('data', trans);
+				var fn = jate._compile(trans, opts);
 			} catch (e) {
 				var errors = geterrors();
 				opts.error(errors, opts);

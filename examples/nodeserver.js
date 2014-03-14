@@ -1,15 +1,15 @@
-// npm install esprima/jshint/jslint before turn on DEBUG
-var DEBUG = true;
+// npm install esprima/jshint/jslint before turn on debug
+var debug = true;
 
 var http = require('http');
-var jate = require(DEBUG ? '../jate.esprima' : '../jate'); // debug options: jate.esprima, jate.jshint, jate.jslint
-jate.usecache = !DEBUG;
+var jate = require(debug ? '../jate.esprima' : '../jate'); // debug options: jate.esprima, jate.jshint, jate.jslint
+jate.usecache = !debug;
 
-http.createServer(function (req, res) {
+http.createServer(function(req, res) {
 	console.log(req.url);
-	res.writeHead(200, {'Content-Type': 'text/html'});
+	res.setHeader('Content-Type', 'text/html');
 
-	res.end(jate.renderfile(__dirname + '/node.jate', {
+	res.end(jate.file(__dirname + '/node.jate')({
 		title: "JATE Ain't a Template Engine",
 		url: 'https://github.com/fenivana/jate'
 	}));

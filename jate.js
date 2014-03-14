@@ -19,18 +19,26 @@ jate.inherit = function(tplfn, data) {
 				_data[p] = data[p];
 			for (var p in d)
 				_data[p] = d[p];
-			return tplfn(_data);			
+			return tplfn(_data);
 		} else {
 			return tplfn(d);
 		}
 	}
 };
 
-jate.compile = jate.comp = function (tpl) {
-	return new Function('data', jate.translate(tpl));
+jate.compile = jate.comp = function(tpl, opts) {
+	if (!opts)
+		opts = {};
+
+	var trans = jate.translate(tpl, opts);
+	return jate._compile(trans, opts);
 };
 
-jate.translate = function (tpl) {
+jate._compile = function(trans, opts) {
+	return new Function('data', trans);
+};
+
+jate.translate = function(tpl, opts) {
 	var trans = tpl.split(jate.open).join("\x00") // use \x00 as open tag
 	               .split(jate.close).join("\x01") // use \x01 as close tag
 	               .replace(/(^|\x01)[^\x00]*/g, function (s) { // deal with raw string
@@ -42,7 +50,7 @@ jate.translate = function (tpl) {
 	               .replace(/([^{};\s])(\s*\x01)/g, "$1;$2") // append ; before close tag if omitted. e.g, <% foo() %>
 	               .replace(/\x00/g, "';") // replace open tag to ';    (end of raw string)
 	               .replace(/\x01/g, "out += '"); // replace close tag to out += '    (start of raw string)
-	trans = "var out = '', print = function () {out += Array.prototype.join.call(arguments, '');}; out += '" + trans + "'; return out;";
+	trans = "var out = '', print = function() {out += Array.prototype.join.call(arguments, '');}; out += '" + trans + "'; return out;";
 	return trans;
 };
 
