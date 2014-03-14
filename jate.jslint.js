@@ -4,8 +4,8 @@
 	function jate_jslint(jate, JSLINT) {
 		jate.compile = jate.jslint = function(tpl, _opts) {
 			var opts = {};
-			for (var i in jate.jslint.default)
-				opts[i] = jate.jslint.default[i];
+			for (var i in jate.jslint.defaults)
+				opts[i] = jate.jslint.defaults[i];
 			for (i in _opts)
 				opts[i] = _opts[i];
 
@@ -43,7 +43,7 @@
 			}
 		};
 
-		jate.jslint.default = {
+		jate.jslint.defaults = {
 			error: function(errors) {
 				console.error(errors)
 				throw errors;

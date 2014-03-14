@@ -1,6 +1,6 @@
 {
   "name": "jate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JATE Ain't a Template Engine",
   "main": "jate.js",
   "scripts": {

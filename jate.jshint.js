@@ -4,8 +4,8 @@
 	function jate_jshint(jate, JSHINT) {
 		jate.compile = jate.jshint = function(tpl, _opts) {
 			var opts = {};
-			for (var i in jate.jshint.default)
-				opts[i] = jate.jshint.default[i];
+			for (var i in jate.jshint.defaults)
+				opts[i] = jate.jshint.defaults[i];
 			for (i in _opts)
 				opts[i] = _opts[i];
 
@@ -43,7 +43,7 @@
 			}
 		};
 
-		jate.jshint.default = {
+		jate.jshint.defaults = {
 			error: function(errors) {
 				console.error(errors);
 				throw errors;

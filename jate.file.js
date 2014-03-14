@@ -9,10 +9,10 @@ jate.usecache = true;
 
 jate.file = function(filename, _opts) {
 	var opts = {};
-	for (var p in jate.file.default)
-		opts[p] = jate.file.default[p];
-	for (p in _opts)
-		opts[p] = _opts[p];
+	for (var i in jate.file.defaults)
+		opts[i] = jate.file.defaults[i];
+	for (i in _opts)
+		opts[i] = _opts[i];
 
 	filename = path.normalize(filename);
 
@@ -28,7 +28,7 @@ jate.file = function(filename, _opts) {
 	}
 };
 
-jate.file.default = {
+jate.file.defaults = {
 	error: function(errors, opts) {
 		delete errors.template;
 		delete errors.translation;

@@ -4,8 +4,8 @@
 	function jate_esprima(jate, esprima) {
 		jate.compile = jate.esprima = function(tpl, _opts) {
 			var opts = {};
-			for (var i in jate.esprima.default)
-				opts[i] = jate.esprima.default[i];
+			for (var i in jate.esprima.defaults)
+				opts[i] = jate.esprima.defaults[i];
 			for (i in _opts)
 				opts[i] = _opts[i];
 
@@ -34,7 +34,7 @@
 			}
 		};
 
-		jate.esprima.default = {
+		jate.esprima.defaults = {
 			error: function(errors) {
 				console.error(errors);
 				throw errors;
