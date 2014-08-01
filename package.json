@@ -1,6 +1,6 @@
 {
   "name": "jate",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "JATE Ain't a Template Engine",
   "main": "jate.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "template",
     "engine"
   ],
-  "author": "Allen John",
+  "author": "Jiang Fengming <jfm@noindoin.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
