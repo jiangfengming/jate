@@ -5,8 +5,6 @@
  * MIT Licensed
  */
 
-'use strict';
-
 function jate(tpl, opts) {
 	return jate.compile(tpl, opts);
 }
@@ -35,7 +33,7 @@ jate.compile = jate.comp = function(tpl, opts) {
 };
 
 jate._compile = function(trans, opts) {
-	return new Function('data', trans);
+	return new Function('_data', trans);
 };
 
 jate.translate = function(tpl, opts) {
@@ -50,7 +48,7 @@ jate.translate = function(tpl, opts) {
 	               .replace(/([^{};\s])(\s*\x01)/g, "$1;$2") // append ; before close tag if omitted. e.g, <% foo() %>
 	               .replace(/\x00/g, "';") // replace open tag to ';    (end of raw string)
 	               .replace(/\x01/g, "out += '"); // replace close tag to out += '    (start of raw string)
-	trans = "var out = '', print = function() {out += Array.prototype.join.call(arguments, '');}; out += '" + trans + "'; return out;";
+	trans = "with(_data) {var out = '', print = function() {out += Array.prototype.join.call(arguments, '');}; out += '" + trans + "'; return out;}";
 	return trans;
 };
 

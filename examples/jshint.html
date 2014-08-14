@@ -18,11 +18,11 @@ if (debug) {
 <body>
 
 <script type="text/template" id="tmp">
-<h1><:=data.title:></h1>
+<h1><:=title:></h1>
 <h2>
 	<:
-	if (data.url) {
-		:><a href="<:=data.url:>"><:=data.url:></a><:
+	if (_data.url) {
+		:><a href="<:=url:>"><:=url:></a><:
 	}
 	:>
 </h2>
